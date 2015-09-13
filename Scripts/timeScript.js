@@ -1,22 +1,51 @@
 ﻿#pragma strict
-private var timeNow : 
+import System; // introduce DateTime to the script
+
+private var lastLoginTime : Date;
 
 function Start() {
-	SaveTime()
+
+	//--save this time for next time
+	PlayerPrefs.SetString("lastLoginTime", System.DateTime.Now.ToString() );
 	
-	timeNow = System.DateTime.Now
-	Debug.Log("time is "+timeNow+" "+DateTime.ToString);
 }
 
-function timeSinceLastLogin() {
-	//--calculate time since last login (in human readable format)
+public function lastLoginTimeFormatted() {
+	//--returns how long ago the user last logged in 
 	
-	return "John";
-
+	var timeNow : Date = System.DateTime.Now;
+	
+	var savedDate : String = PlayerPrefs.GetString("lastLoginTime");
+	if(savedDate == "") {
+		// convert current date to string...
+         savedDate = timeNow.ToString();
+	}
+	
+	//--convert to date
+	var lastLoginTime: DateTime;
+    DateTime.TryParse(savedDate, lastLoginTime);
+		
+	var days = (timeNow - lastLoginTime).Days;
+	var minutes = (timeNow - lastLoginTime).Minutes;
+	var hours = (timeNow - lastLoginTime).Hours;
+	var seconds = (timeNow - lastLoginTime).Seconds;
+	var weeks = days / 7;
+	var years = days / 365; //wrong but near enough
+ 	
+ 	if (years > 0) {
+		return years + " years";  
+	} else if (weeks > 0) {
+		return weeks + " weeks";
+	} else if (days > 0) {
+		return days + " days"; 
+	} else if (hours > 0) {
+		return hours + " hours";
+	} else if (minutes > 0) {
+		return minutes + " minutes";
+	} else {
+		return seconds + " seconds";
+	}
 }
 
-function SaveTime() {
-	//--save datetime right now into local storage
-	
-//	public float DifferenceTime = System.DateTime.Now - lastTimeSaved ;
-}
+
+

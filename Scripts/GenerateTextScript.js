@@ -1,8 +1,10 @@
 ﻿#pragma strict
-import UnityEngine.UI;
+import UnityEngine.UI; //--need this for canvas stuff
+import System.Collections.Generic;
 
 private var mainTextField : Text;
 private var bottomTextField : Text;
+private var timeScript : timeScript;
 
 private var randomNum : int = 0;
 
@@ -10,9 +12,11 @@ function Start () {
 	mainTextField = GameObject.Find("MainTextField").GetComponent.<Text>();
 	bottomTextField = GameObject.Find("BottomText").GetComponent.<Text>();
 	
+	timeScript = GetComponent.<timeScript>();
+	
 	//--find out how long it was since last logged in 
 	
-	//var time = 55;
+	var time = timeScript.lastLoginTimeFormatted();
 	
 	//--generate short 
 	NewRandomShort();
@@ -52,15 +56,15 @@ function NewRandomShort () {
 
 function randomNoun() {
 	//--single noun, like a body part, or posession
-	var theArray = ["jurd", "tak", "jud", "kuq", "hurq", "doog", "druq", "gomble", "grildensmuk", 
-		"bobblekin", "fandoflep", "jusset", "tiddlypop", "jandlesmoop", "drut", "kludduk", "tark"];
+	var theArray = ["jurd", "tak", "jud", "kuq", "hurq", "doog", "druq", "gomble", "grilden smuk", 
+		"bobblekin", "fandoflep", "jusset", "tiddlypop", "jandle smoop", "drut", "kludduk", "tark"];
 	return theArray[Random.Range(0,theArray.length)];
 }
 
 function randomNouns() {
 	//--plural noun, like "trousers"
 	var nounArray = ["jurds", "taks", "juds", "doogles", "smeeples", "wongles", "grildensmuk", 
-		"jups", "fleps", "jussets", "doodarps", "handleycroops"];
+		"jups", "fleps", "jussets", "doodarps", "handley croops"];
 	return nounArray[Random.Range(0,nounArray.length)];
 }
 

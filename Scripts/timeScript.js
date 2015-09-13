@@ -1,7 +1,11 @@
 ﻿#pragma strict
+private var timeNow : 
 
 function Start() {
 	SaveTime()
+	
+	timeNow = System.DateTime.Now
+	Debug.Log("time is "+timeNow+" "+DateTime.ToString);
 }
 
 function timeSinceLastLogin() {
@@ -13,4 +17,6 @@ function timeSinceLastLogin() {
 
 function SaveTime() {
 	//--save datetime right now into local storage
+	
+//	public float DifferenceTime = System.DateTime.Now - lastTimeSaved ;
 }

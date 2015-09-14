@@ -1,7 +1,7 @@
 ﻿#pragma strict
 import System; // introduce DateTime to the script
 
-private var lastLoginTime : Date;
+//private var lastLoginTime : Date;
 
 function Start() {
 
@@ -47,5 +47,22 @@ public function lastLoginTimeFormatted() {
 	}
 }
 
+public function lastLoginTimeMinutes() {
+
+	var timeNow : Date = System.DateTime.Now;
+	
+	var savedDate : String = PlayerPrefs.GetString("lastLoginTime");
+	if(savedDate == "") {
+		// convert current date to string...
+         savedDate = timeNow.ToString();
+	}
+	
+	//--convert to date
+	var lastLoginTime: DateTime;
+    DateTime.TryParse(savedDate, lastLoginTime);
+		
+	return (timeNow - lastLoginTime).Minutes;
+
+}
 
 

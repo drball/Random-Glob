@@ -18,21 +18,19 @@ function Start () {
 	
 	var explainerText : String;
 	
+	Debug.Log("minutesd = "+timeMinutes);
+	
 	//--if over an hour, do something different
-	if((timeMinutes > 60)) {
+	if(timeMinutes > 50 ) {
 		//--generate long 
 		NewRandomLong();
-		
-		//--don't show bottom text
-		//bottomTextField.SetActive(false); 
-		
+				
 		//--for debug
 		//InvokeRepeating("NewRandomLong",4,4);
 		
 		explainerText = "This is what Glob has been up to since you last checked. Check back after an hour to see what he'll do next"; 
 	
-	
-	
+
 	} else {
 		//--generate short 
 		NewRandomShort();
@@ -43,10 +41,6 @@ function Start () {
 		explainerText = "You only checked on Glob "+timeFormatted+" ago. Check back after an hour to see what he's been up to"; 
 	
 	}
-	
-	
-	
-	
 	
 	bottomTextField.text = explainerText.ToUpper();
 }

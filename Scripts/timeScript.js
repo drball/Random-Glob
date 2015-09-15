@@ -47,7 +47,7 @@ public function lastLoginTimeFormatted() {
 	}
 }
 
-public function lastLoginTimeMinutes() {
+public function lastLoginTimeHours() {
 
 	var timeNow : Date = System.DateTime.Now;
 	
@@ -61,7 +61,7 @@ public function lastLoginTimeMinutes() {
 	var lastLoginTime: DateTime;
     DateTime.TryParse(savedDate, lastLoginTime);
 		
-	return (timeNow - lastLoginTime).Minutes;
+	return (timeNow - lastLoginTime).Hours;
 
 }
 

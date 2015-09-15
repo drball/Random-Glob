@@ -13,15 +13,15 @@ function Start () {
 	timeScript = GetComponent.<timeScript>();
 	
 	//--find out how long it was since last logged in 
-	var timeMinutes = timeScript.lastLoginTimeMinutes(); //--for calculations
+	var timeHours = timeScript.lastLoginTimeHours(); //--for calculations
 	var timeFormatted = timeScript.lastLoginTimeFormatted(); //--for outputting
 	
 	var explainerText : String;
 	
-	Debug.Log("minutesd = "+timeMinutes);
+	Debug.Log("minutesd = "+timeHours);
 	
 	//--if over an hour, do something different
-	if(timeMinutes > 50 ) {
+	if(timeHours > 50 ) {
 		//--generate long 
 		NewRandomLong();
 				

@@ -14,6 +14,7 @@ function Start () {
 	
 	//--find out how long it was since last logged in 
 	var timeHours = timeScript.lastLoginTimeHours(); //--for calculations
+	var timeMins = timeScript.lastLoginTimeMins(); //--for calculations
 	var timeFormatted = timeScript.lastLoginTimeFormatted(); //--for outputting
 	
 	var explainerText : String;
@@ -21,7 +22,7 @@ function Start () {
 	Debug.Log("minutesd = "+timeHours);
 	
 	//--if over an hour, do something different
-	if(timeHours > 50 ) {
+	if(timeHours > 1) {
 		//--generate long 
 		NewRandomLong();
 				
@@ -32,14 +33,23 @@ function Start () {
 	
 
 	} else {
-		//--generate short 
-		NewRandomShort();
-		
-		//--for debug
-		//InvokeRepeating("NewRandomShort",2,2);
-		
-		explainerText = "You only checked on Glob "+timeFormatted+" ago. Check back after an hour to see what he's been up to"; 
 	
+		if(timeMins < 3) {
+		
+			mainTextField.text = "Glob hasn't had chance to do anything yet, check back in at least 5 minutes".ToUpper();
+			explainerText = "But he's planning on "+randomVerb()+" his "+randomNoun();
+		
+		} else {
+			//--generate short 
+			NewRandomShort();
+			
+			//--for debug
+			//InvokeRepeating("NewRandomShort",2,2);
+			
+			explainerText = "You only checked on Glob "+timeFormatted+" ago. Check back after an hour to see what he's been up to"; 
+		
+		}
+		
 	}
 	
 	bottomTextField.text = explainerText.ToUpper();
@@ -88,7 +98,7 @@ function randomNoun() {
 	//--single noun, like a body part, or posession
 	var theArray = ["jurd", "tak", "jud", "kuq", "hurq", "doog", "druq", "gomble", "grilden smuk", 
 		"bobblekin", "fandoflep", "jusset", "tiddlypop", "jandle smoop", "drut", "kludduk", "tark",
-		"gad", "grawp", "flarp", "gob", "pomp", "snuck", "smap"];
+		"gad", "grawp", "flarp", "gob", "pomp", "snuck", "smap", "nog", "blob", "fod", "plup"];
 	return theArray[Random.Range(0,theArray.length)];
 }
 
@@ -102,7 +112,7 @@ function randomNouns() {
 function randomVerb() {
 	//-- will be suffixed with "his"
 	var verbArray = ["flepping", "brushing", "clipping", "tidying", "fiddling with", "sniffing", 
-		"globbing", "boofing", "playing with", "wiping", "stroking", "slobbering on"];
+		"globbing", "boofing", "playing with", "wiping", "stroking", "slobbering on", "jigging", "nogging"];
 	return verbArray[Random.Range(0,verbArray.length)];
 }
 
@@ -120,8 +130,8 @@ function randomFood() {
 		"roasted "+randomCreature()+" bits", "calcified nitro-cheese",  "isotonic mince logs", 
 		"tokk", "a "+randomNoun()+" sandwich", "a "+randomNoun()+" baguette",
 		"dried fish gems", "microwavable giraffe hexagons", "vegan powder", 
-		"BBQ snake puffs'", "peach flavoured beetle solution", "chlorinated "+randomNoun()+" curry", 
-		"cyber mince", "maggot blops"];
+		"BBQ snake puffs", "peach flavoured beetle solution", "chlorinated "+randomNoun()+" curry", 
+		"cyber mince", "maggot blops", "grep slop", "gleeb", "burps", "jip"];
 	return foodArray[Random.Range(0,foodArray.length)];
 }
 
@@ -160,7 +170,8 @@ function randomDrink() {
 }
 
 function randomEmpire() {
-	var theArray = ["Kangaphin", "Plebian", "Human", "Fleeban", "Corkun", "Nagawak", "Plunkian"];
+	var theArray = ["Kangaphin", "Plebian", "Human", "Fleeban", "Corkun", "Nagawak", "Plunkian",
+		"Slepan", "Blopan", "Jangon", "Flepian", "Phoonian", "Gongol", "Mongan"];
 	return theArray[Random.Range(0,theArray.length)];
 	
 }

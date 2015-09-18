@@ -65,4 +65,22 @@ public function lastLoginTimeHours() {
 
 }
 
+public function lastLoginTimeMins() {
+
+	var timeNow : Date = System.DateTime.Now;
+	
+	var savedDate : String = PlayerPrefs.GetString("lastLoginTime");
+	if(savedDate == "") {
+		// convert current date to string...
+         savedDate = timeNow.ToString();
+	}
+	
+	//--convert to date
+	var lastLoginTime: DateTime;
+    DateTime.TryParse(savedDate, lastLoginTime);
+		
+	return (timeNow - lastLoginTime).Minutes;
+
+}
+
 

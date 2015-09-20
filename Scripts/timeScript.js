@@ -1,7 +1,6 @@
 ﻿#pragma strict
 import System; // introduce DateTime to the script
 
-//private var lastLoginTime : Date;
 
 function Start() {
 

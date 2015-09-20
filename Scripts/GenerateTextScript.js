@@ -1,6 +1,5 @@
 ﻿#pragma strict
 import UnityEngine.UI; //--need this for canvas stuff
-//import System.Collections.Generic;
 
 private var mainTextField : Text;
 private var bottomTextField : Text;
@@ -22,7 +21,7 @@ function Start () {
 	Debug.Log("minutesd = "+timeHours);
 	
 	//--if over an hour, do something different
-	if(timeHours > 1) {
+	if(timeHours >= 1) {
 		//--generate long 
 		NewRandomLong();
 				
@@ -31,7 +30,6 @@ function Start () {
 		
 		explainerText = "This is what Glob has been up to since you last checked. Check back after an hour to see what he'll do next"; 
 	
-
 	} else {
 	
 		if(timeMins < 3) {
